@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>prediction</name>
+  <version>0.0.1</version>
+  <description>The prediction package</description>
+  <maintainer email="TCHEN008@e.ntu.edu.sg">Chen Tairan</maintainer>
+
+  <license>MIT</license>
+
+
+  <author>Chen Tairan</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!--For custom message import-->
+
+  <!--Other depends-->
+  <depend>rospy</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+
+  <export>
+  </export>
+</package>

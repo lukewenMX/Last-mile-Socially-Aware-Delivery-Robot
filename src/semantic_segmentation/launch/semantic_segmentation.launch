@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load configuration parameters -->
+  <rosparam command="load" file="$(find semantic_segmentation)/config/semantic_segmentation.yaml" />
+
+  <!-- Start the node -->
+  <node name="semantic_segmentation" pkg="semantic_segmentation"
+        type="semantic_segmentation_node.py" output="screen" />
+
+  <!-- <node name="republish" type="republish" pkg="image_transport" output="screen" args="compressed in:=/fl_cam/color/ raw out:=/fl_cam/color/image_raw" /> -->
+</launch>

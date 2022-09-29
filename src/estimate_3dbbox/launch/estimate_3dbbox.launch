@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+  使用范例:
+-->
+<launch>
+  <arg name='node_name' default='estimate_3dbbox_node' />
+  <!-- 调试等级 -->
+  <arg name="verbose" default="2" />
+  <!-- 套件安装位姿 [x, y, z, R, P, Y] -->
+  <arg name='l2w' default='0, 0, 0, 0, 0, 0' />
+  <!-- 雷达-相机外参文件 -->
+  <arg name='l2c' default='$(find sensors_calib)/config/extrinsic_livox2rgb.txt' />
+  <!-- msg.header.frame_id -->
+  <arg name="frame_id" default="cam_frame" />
+  <!-- 模板匹配选取目标区域: 位姿估算方法, 0-由PCA估算，1-由聚合点云边界确定,2-聚类首元点云边界 -->
+  <arg name="pose_type" default="0" />
+  <!-- 模板匹配选取目标区域: 统计量归一化方法, 0-最大值比值法，1-总数比值法,详细看 obj_cloud_pattern.h -->
+  <arg name="norm_type" default="1" />
+  <!-- 数据采集保存目录，空-不采集，非空-采集，默认空， 采集的数据主要用于调试(静态分析) e.g. /tmp/data_acqu -->
+  <arg name="data_acqu_path" default="" />
+
+  <!-- 订阅主题: 深度图 -->
+  <arg name='tp_in_depth' default='/fr_cam/aligned_depth_to_color/image_raw' />
+  <!-- 订阅主题: 深度图相机参数 -->
+  <arg name='tp_in_depth_camerainfo' default='/fl_cam/aligned_depth_to_color/camera_info' />
+  <!-- 订阅主题: 强度值图 -->
+  <arg name='tp_in_intensity' default='/sensors_calib/intensity' />
+  <!-- 订阅主题: 多目标检测/跟踪 -->
+  <arg name='tp_in_mot' default='/objs_detect/mot' />
+  <!-- 发布主题: 多目标检测/跟踪, 追加3dbbox信息 -->
+  <arg name='tp_out_mot' default='/objs_detect/mot_3d' />
+
+  <group ns="/objs_detect">
+    <node pkg="estimate_3dbbox" type="estimate_3dbbox_node" name="$(arg node_name)" output="screen" >
+        <param name="frame_id" value="$(arg frame_id)" />
+        <param name="verbose" type="int" value="$(arg verbose)" />
+
+        <param name='extrinsic_livox2rgb' value='$(arg l2c)' />
+        <param name='pose_livox2world' value='$(arg l2w)' />
+
+        <param name='filter_ground_d_thr' value='0.03' />
+        <param name='filter_ground_n_thr' value='0.9' />
+        <param name='filter_ground_percent' value='0.3' />
+
+        <param name='sec_coeff' value='40' />
+        <param name='sec_min_size' value='5' />
+        <param name='sec_max_size' value='6000' />
+
+        <param name='w_matching' value='0.6' />
+        <param name='w_distance' value='0.2' />
+        <param name='w_points' value='0.2' />
+        <param name='gather_coef' value='1.5' />
+        <param name='pose_type' type='int' value='$(arg pose_type)' />
+        <param name='norm_type' type='int' value='$(arg norm_type)' />
+        <param name="data_acqu_path" value="$(arg data_acqu_path)" />
+
+        <param name='tp_in_depth' value='$(arg tp_in_depth)' />
+        <param name='tp_in_depth_camerainfo' value='$(arg tp_in_depth_camerainfo)' />
+        <param name='tp_in_intensity' value='$(arg tp_in_intensity)' />
+        <param name='tp_in_mot' value='$(arg tp_in_mot)' />
+        <param name='tp_out_mot' value='$(arg tp_out_mot)' />
+    </node>
+  </group>
+</launch>

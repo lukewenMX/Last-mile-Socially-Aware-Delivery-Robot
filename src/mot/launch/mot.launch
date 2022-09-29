@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!--
+ gpus         : 启用GPU序号，多个以逗号隔开，'-1'-禁用GPU.
+ memory       : GPU内存配置，百分比
+
+使用范例:
+ $roslaunch mot mot.launch
+-->
+<launch>
+  <!-- 节点名称 -->
+  <arg name="node_name" default="mot" />
+  <!-- 调试等级 -->
+  <arg name="verbose" default="3" />
+  <!-- 指定GPU -->
+  <arg name="gpus" default="0" />
+  <!-- 显存分配 -->
+  <arg name="memory" default="0.2" />
+  <!-- msg.header.frame_id -->
+  <arg name="frame_id" default="cam_frame" />
+  <!-- 置信度阈值 -->
+  <arg name="conf_thres" default="0.5" />
+  <!-- IOU阈值 -->
+  <arg name="iou_thres" default="0.5" />
+  <!-- yolo版本，支持 v5, v6 -->
+  <arg name="yolo_version" default="v5" />
+  <!-- 订阅主题: 图像数据 -->
+  <arg name="tp_in_image" default="/fl_cam/color/image_raw" />
+  <!-- 发布主题: 目标检测/跟踪结果 [mot/MOT] -->
+  <arg name='tp_out_mot' default="/objs_detect/mot" />
+  <!-- 是否可视化检测结果 -->
+  <arg name="vis" default="true" />
+  <!-- 发布主题: 可视化检测结果 [sensor_msgs/Image] -->
+  <arg name="tp_out_vis" default="/vis/obj_detect_rgb" />
+  <!-- <node name="republish" type="republish" pkg="image_transport" output="screen" args="compressed in:=/fl_cam/color raw out:=/fl_cam/color/image_raw" /> -->
+  <group ns="/objs_detect">
+    <node pkg="mot" type="mot_node.py" name="$(arg node_name)" output="screen">
+        <!-- yolov5 -->
+        <env name='YOLOV5_DEEPSORT_PATH' value='$(find mot)/yolov5_deepsort' if="$(eval arg('yolo_version')=='v5')" />
+        <param name="yolo_model" value="$(find mot)/yolov5_deepsort/yolov5s.pt" if="$(eval arg('yolo_version')=='v5')" />
+        <param name="config_deepsort" value="$(find mot)/yolov5_deepsort/deep_sort/configs/deep_sort.yaml" if="$(eval arg('yolo_version')=='v5')" />
+        <!-- deep_sort_model 约定
+        1。 deep_sort_model 为模型名称，不含目录，不含扩展名, e.g. osnet_ibn_x1_0_MSMT17
+        2。 存放约定: <mot>/yolov5_deepsort/deep_sort/deep/checkpoint/<deep_sort_model>.pth
+        -->
+        <param name="deep_sort_model" value="$(find mot)/yolov5_deepsort/deep_sort/deep/checkpoint/osnet_ibn_x1_0_MSMT17.pth" if="$(eval arg('yolo_version')=='v5')" />
+
+        <!-- yolov6 -->
+        <param name="yolo_model" value="$(find mot)/yolov5_deepsort_v6/yolov5s_v6.pt"  if="$(eval arg('yolo_version')=='v6')" />
+        <env name='YOLOV5_DEEPSORT_PATH' value='$(find mot)/yolov5_deepsort_v6' if="$(eval arg('yolo_version')=='v6')" />
+        <param name="config_deepsort" value="$(find mot)/yolov5_deepsort_v6/deep_sort/configs/deep_sort.yaml" if="$(eval arg('yolo_version')=='v6')" />
+        <!-- deep_sort_model 约定
+        1。 deep_sort_model 为模型名称，不含目录，不含扩展名, e.g. osnet_ibn_x1_0_MSMT17
+        2。 存放约定: <mot>/yolov5_deepsort/deep_sort/deep/checkpoint/<deep_sort_model>.pth
+        -->
+        <param name="deep_sort_model" value="osnet_ibn_x1_0_MSMT17" if="$(eval arg('yolo_version')=='v6')" />
+
+        <!-- <env name='PYTHONPATH' value='$(env PYTHONPATH):$(find mot)/yolov5_deepsort' /> -->
+        <param name="frame_id" value="$(arg frame_id)" />
+        <param name="verbose" type="int" value="$(arg verbose)" />
+        <param name="gpus" type="str" value="$(arg gpus)" />
+        <param name="memory" type="double" value="$(arg memory)" />
+        <param name="conf_thres" type="double" value="$(arg conf_thres)" />
+        <param name="iou_thres" type="double" value="$(arg iou_thres)" />
+        <param name='tp_in_image' value="$(arg tp_in_image)" />
+        <param name='tp_out_mot' value="$(arg tp_out_mot)" />
+        <param name="vis" value="$(arg vis)" />
+        <param name="tp_out_vis" value="$(arg tp_out_vis)" />
+    </node>
+  </group>
+</launch>
+

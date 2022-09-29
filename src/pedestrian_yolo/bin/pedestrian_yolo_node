@@ -1,0 +1,15 @@
+#!/usr/bin/env python
+
+import rospy
+from pedestrian_yolo.pedestrian_yolo import PedestrianYOLO, PedestrianYOLOException
+
+
+if __name__ == '__main__':
+    try:
+        rospy.init_node('rospy_pedestrian_yolo', log_level=rospy.INFO)
+        pedestrian_yolo = PedestrianYOLO()
+        rospy.spin()
+    except PedestrianYOLOException as e:
+        rospy.logfatal('{}: Shutting down pedestrian_yolo node'.format(e))
+    except rospy.ROSInterruptException:
+        pass

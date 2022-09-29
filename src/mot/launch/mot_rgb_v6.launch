@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+ gpus         : 启用GPU序号，多个以逗号隔开，'-1'-禁用GPU.
+ memory       : GPU内存配置，百分比
+
+使用范例:
+ $roslaunch mot mot_rgb.launch
+-->
+<launch>
+  <arg name="verbose" default="0" />
+  <arg name="gpus" default="0" />
+  <arg name="memory" default="0.1" />
+  <arg name="frame_id" default="frame_id" />
+  <arg name="conf_thres" default="0.5" />
+  <arg name="iou_thres" default="0.5" />
+  <arg name="vis" default="false" />
+
+  <include file="$(find mot)/launch/mot_rgb.launch">
+      <arg name="node_name" default="mot_rgb_v6" />
+      <arg name="verbose" default="$(arg verbose)" />
+      <arg name="yolo_version" default="v6" />
+      <arg name="gpus" default="$(arg gpus)" />
+      <arg name="memory" default="$(arg memory)" />
+      <arg name="frame_id" default="$(arg frame_id)" />
+      <arg name="conf_thres" default="$(arg conf_thres)" />
+      <arg name="iou_thres" default="$(arg iou_thres)" />
+      <arg name="vis" default="$(arg vis)" />
+  </include>
+
+</launch>
+

@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>pedestrian_yolo</name>
+  <version>0.0.0</version>
+  <description>The pedestrian_yolo package</description>
+  <maintainer email="chentairan@bitfsd.cn">Chen Tairan</maintainer>
+
+  <license>MIT</license>
+
+
+  <author>Chen Tairan</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!--Other depends-->
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>sidewalk_msgs</depend>
+
+  <export>
+  </export>
+</package>

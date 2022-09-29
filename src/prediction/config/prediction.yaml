@@ -1,0 +1,7 @@
+prediction_config:
+  value_1: 1
+  value_2: 2
+
+model_config_dir: /home/luke/Sidewalk_navigation_9_23/src/prediction/config/config.json
+
+model_dir: /home/luke/Sidewalk_navigation_9_23/src/prediction/config

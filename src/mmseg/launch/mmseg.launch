@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+使用范例:
+ $roslaunch mmseg mmseg.launch
+-->
+<launch>
+  <!-- 节点名称 -->
+  <arg name="node_name" default="mmseg" />
+  <!-- 调试等级 -->
+  <arg name="verbose" default="1" />
+  <!-- 指定GPU -->
+  <arg name="gpu_index" default="0" />
+  <!-- 订阅主题: 图像数据 -->
+  <arg name="tp_in_image" default="/fl_cam/color/image_raw" />
+  <!-- 发布主题: 语义分割结果 [Image] -->
+  <arg name='tp_out_seg' default="/semantic" />
+  <!-- 发布主题: 可视化语义分割结果 [sensor_msgs/Image] -->
+  <arg name="tp_out_vis" default="/vis/seg_img" />
+  <node pkg="mmseg" type="seg_node.py" name="$(arg node_name)" output="screen">
+      <param name="model" value="$(find mmseg)/bin/sdtc_trt"/>
+      <param name="verbose" type="int" value="$(arg verbose)" />
+      <param name="gpu_index" type="int" value="$(arg gpu_index)" />
+      <param name='tp_in_image' value="$(arg tp_in_image)" />
+      <param name='tp_out_seg' value="$(arg tp_out_seg)" />
+      <param name="tp_out_vis" value="$(arg tp_out_vis)" />
+  </node>
+</launch>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!--args-->
+  <arg name="locfree" default="10"/>
+  <arg name="lococc" default="10"/>
+  <arg name="age_thresh" default="15"/>
+  <arg name="sidewalk_safety" default="4"/>
+  <arg name="map_width" default="20"/>
+  <arg name="grid_num_edge" default="400"/>
+  <arg name="valid_sidewalk_min_point" default="50"/>
+  <arg name="fill_square" default="0.5"/>
+  <arg name="blind_area" default="1.8"/>
+
+  <arg name="tp_pub_goal" default="/move_base_simple/goal"/>
+  <arg name="tp_pub_map" default="/occmap"/>
+  <arg name="tp_pub_map_img" default="/occshow"/>
+  <arg name="tp_pub_odom" default="/robot_position"/>
+  <arg name="tp_sub_mot" default="/objs_detect/mot"/>
+  <arg name="tp_sub_depth" default="/fl_cam/aligned_depth_to_color/image_raw"/>
+  <arg name="tp_sub_depth_cam_info" default="/fl_cam/aligned_depth_to_color/camera_info"/>
+  <arg name="tp_sub_ped" default="/tracked_persons"/>
+  <arg name="tp_sub_semantic" default="/segmentation"/>
+  <arg name="tp_sub_traj" default="/prediction_trajectory"/>
+
+  
+  <node name="republish" type="republish" pkg="image_transport" output="screen" args="compressed in:=/fl_cam/color raw out:=/fl_cam/color/image_raw" />
+  <include file="$(find mot)/launch/mot.launch" />
+  <include file="$(find prediction)/launch/prediction.launch" />
+  <!-- <include file="$(find semantic_segmentation)/launch/semantic_segmentation.launch" /> -->
+  <!-- <include file="$(find dl_vis)/launch/dl_vis.launch" /> -->
+  <!-- <include file="$(find mmseg)/launch/mmseg.launch" /> -->
+  <!-- <include file="$(find estimate_3dbbox)/launch/estimate_3dbbox.launch" /> -->
+  <node name="estimate_simple_node" pkg="estimate_simple" type="estimate_simple_node" output="screen"/>
+  <node name="pointcloud_ocmap" pkg="pointcloud_ocmap" type="pointcloud_ocmap" output="screen">
+      <param name = "locfree" type="int" value="$(arg locfree)"/>
+      <param name = "lococc" type="int" value="$(arg lococc)"/>
+      <param name = "age_thresh" type="int" value="$(arg age_thresh)"/>
+      <param name = "sidewalk_safety" type="int" value="$(arg sidewalk_safety)"/>
+      <param name = "map_width" type="int" value="$(arg map_width)"/>
+      <param name = "grid_num_edge" type="int" value="$(arg grid_num_edge)"/>
+      <param name = "valid_sidewalk_min_point" type="int" value="$(arg valid_sidewalk_min_point)"/>
+      <param name = "fill_square" type="double" value="$(arg fill_square)"/>
+      <param name = "blind_area" type="double" value="$(arg blind_area)"/>
+      <param name = "tp_pub_goal" value="$(arg tp_pub_goal)"/>
+      <param name = "tp_pub_map" value="$(arg tp_pub_map)"/>
+      <param name = "tp_pub_map_img" value="$(arg tp_pub_map_img)"/>
+      <param name = "tp_pub_odom" value="$(arg tp_pub_odom)"/>
+      <param name = "tp_sub_mot" value="$(arg tp_sub_mot)"/>
+      <param name = "tp_sub_depth" value="$(arg tp_sub_depth)"/>
+      <param name = "tp_sub_depth_cam_info" value="$(arg tp_sub_depth_cam_info)"/>
+      <param name = "tp_sub_ped" value="$(arg tp_sub_ped)"/>
+      <param name = "tp_sub_traj" value="$(arg tp_sub_traj)"/>
+      <param name = "tp_sub_semantic" value="$(arg tp_sub_semantic)"/>
+  </node>
+</launch>

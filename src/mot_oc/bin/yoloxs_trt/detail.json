@@ -1,0 +1,77 @@
+{
+    "version": "0.8.0",
+    "codebase": {
+        "task": "ObjectDetection",
+        "codebase": "mmdet",
+        "version": "2.25.2",
+        "pth": "/home/cx/mot_tests/yolox_s_8x8_300e_coco_20211121_095711-4592a793.pth",
+        "config": "/home/cx/mmdetection/configs/yolox/yolox_s_8x8_300e_coco.py"
+    },
+    "codebase_config": {
+        "type": "mmdet",
+        "task": "ObjectDetection",
+        "model_type": "end2end",
+        "post_processing": {
+            "score_threshold": 0.05,
+            "confidence_threshold": 0.005,
+            "iou_threshold": 0.5,
+            "max_output_boxes_per_class": 200,
+            "pre_top_k": 5000,
+            "keep_top_k": 100,
+            "background_label_id": -1
+        }
+    },
+    "onnx_config": {
+        "type": "onnx",
+        "export_params": true,
+        "keep_initializers_as_inputs": false,
+        "opset_version": 11,
+        "save_file": "end2end.onnx",
+        "input_names": [
+            "input"
+        ],
+        "output_names": [
+            "dets",
+            "labels"
+        ],
+        "input_shape": [
+            640,
+            640
+        ],
+        "optimize": true
+    },
+    "backend_config": {
+        "type": "tensorrt",
+        "common_config": {
+            "fp16_mode": true,
+            "max_workspace_size": 1073741824
+        },
+        "model_inputs": [
+            {
+                "input_shapes": {
+                    "input": {
+                        "min_shape": [
+                            1,
+                            3,
+                            640,
+                            640
+                        ],
+                        "opt_shape": [
+                            1,
+                            3,
+                            640,
+                            640
+                        ],
+                        "max_shape": [
+                            1,
+                            3,
+                            640,
+                            640
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    "calib_config": {}
+}

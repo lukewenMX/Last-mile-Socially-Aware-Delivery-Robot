@@ -1,0 +1,104 @@
+{
+    "pipeline": {
+        "input": [
+            "img"
+        ],
+        "output": [
+            "post_output"
+        ],
+        "tasks": [
+            {
+                "type": "Task",
+                "module": "Transform",
+                "name": "Preprocess",
+                "input": [
+                    "img"
+                ],
+                "output": [
+                    "prep_output"
+                ],
+                "transforms": [
+                    {
+                        "type": "LoadImageFromFile"
+                    },
+                    {
+                        "type": "Resize",
+                        "keep_ratio": false,
+                        "size": [
+                            640,
+                            640
+                        ]
+                    },
+                    {
+                        "type": "Pad",
+                        "pad_to_square": true,
+                        "pad_val": {
+                            "img": [
+                                114.0,
+                                114.0,
+                                114.0
+                            ]
+                        },
+                        "size_divisor": 1
+                    },
+                    {
+                        "type": "DefaultFormatBundle"
+                    },
+                    {
+                        "type": "Collect",
+                        "keys": [
+                            "img"
+                        ],
+                        "meta_keys": [
+                            "img_norm_cfg",
+                            "flip",
+                            "pad_shape",
+                            "ori_filename",
+                            "ori_shape",
+                            "scale_factor",
+                            "valid_ratio",
+                            "filename",
+                            "flip_direction",
+                            "img_shape"
+                        ]
+                    }
+                ]
+            },
+            {
+                "name": "yolox",
+                "type": "Task",
+                "module": "Net",
+                "input": [
+                    "prep_output"
+                ],
+                "output": [
+                    "infer_output"
+                ],
+                "input_map": {
+                    "img": "input"
+                },
+                "output_map": {}
+            },
+            {
+                "type": "Task",
+                "module": "mmdet",
+                "name": "postprocess",
+                "component": "ResizeBBox",
+                "params": {
+                    "score_thr": 0.01,
+                    "nms": {
+                        "type": "nms",
+                        "iou_threshold": 0.65
+                    }
+                },
+                "output": [
+                    "post_output"
+                ],
+                "input": [
+                    "prep_output",
+                    "infer_output"
+                ]
+            }
+        ]
+    }
+}

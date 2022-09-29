@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <!-- Load configuration parameters -->
+  <node name="disparity_depth" pkg="disparity_depth" type="disparity_depth" output="screen"/>
+
+</launch>

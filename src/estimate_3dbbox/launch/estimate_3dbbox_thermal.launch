@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!--
+  使用范例:
+-->
+<launch>
+  <arg name="verbose" default="0" />
+  <arg name='l2w' default='0, 0, 0, 0, 0, 0' />
+  <arg name="frame_id" default="livox_frame" />
+  <arg name='pose_type' default='1' />
+  <arg name="data_acqu_path" default="" />
+
+  <include file="$(find estimate_3dbbox)/launch/estimate_3dbbox.launch">
+    <arg name='node_name' value='estimate_3dbbox_thermal_node' />
+    <arg name="verbose" value="$(arg verbose)" />
+    <arg name="frame_id" value="$(arg frame_id)" />
+    <arg name='l2w' value='$(arg l2w)' />
+    <arg name='pose_type' value='$(arg pose_type)' />
+    <arg name="data_acqu_path" value="$(arg data_acqu_path)" />
+
+    <arg name='l2c' default='$(find sensors_calib)/config/extrinsic_livox2thermal.txt' />
+    <arg name='tp_in_depth' default='/sensors_calib/depth_thermal' />
+    <arg name='tp_in_depth_camerainfo' default='/sensors_calib/thermal_rect/camera_info' />
+    <arg name='tp_in_intensity' default='/sensors_calib/intensity_thermal' />
+    <arg name='tp_in_mot' default='/objs_detect/mot_thermal' />
+    <arg name='tp_out_mot' default='/objs_detect/mot_thermal_3d' />
+  </include>
+
+</launch>

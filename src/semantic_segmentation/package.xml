@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>semantic_segmentation</name>
+  <version>0.0.0</version>
+  <description>The semantic_segmentation package</description>
+  <maintainer email="chentairan@bitfsd.cn">Chen Tairan</maintainer>
+
+  <license>MIT</license>
+
+
+  <author>Chen Tairan</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <!--For custom message import-->
+
+  <!--Other depends-->
+  <depend>roscpp</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+
+  <export>
+  </export>
+</package>

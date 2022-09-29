@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+使用范例:
+-->
+<launch>
+  <!-- 调试等级 -->
+  <arg name="verbose" default="0" />
+  <!-- msg.header.frame_id -->
+  <arg name="frame_id" default="livox_frame" />
+  <!-- 通过HSV变换，把彩色图伪造为热感图输出(新加) -->
+  <arg name="HSV_h1" default="1.0" />
+  <arg name="HSV_h2" default="1" />
+  <arg name="HSV_s1" default="1.0" />
+  <arg name="HSV_s2" default="1" />
+  <arg name="HSV_v1" default="1.0" />
+  <arg name="HSV_v2" default="1" />
+  <group ns="/sensors_calib">
+    <node pkg="sensors_calib" type="sensors_calib_new_node" name="sensors_calib_new_node" output="screen" >
+        <param name="frame_id" value="$(arg frame_id)" />
+        <param name="verbose" type="int" value="$(arg verbose)" />
+        <param name='intrinsic_rgb' value='$(find sensors_calib)/config/intrinsic_rgb.txt' />
+        <param name="HSV_h1" value="$(arg HSV_h1)" />
+        <param name="HSV_h2" value="$(arg HSV_h2)" />
+        <param name="HSV_s1" value="$(arg HSV_s1)" />
+        <param name="HSV_s2" value="$(arg HSV_s2)" />
+        <param name="HSV_v1" value="$(arg HSV_v1)" />
+        <param name="HSV_v2" value="$(arg HSV_v2)" />
+        <param name='rgb_width' value='640' />
+        <param name='rgb_height' value='480' />
+        <param name='min_distance' value='1.0' />
+        <param name='max_distance' value='300.0' />
+        <param name='tp_in_rgb' value='/rgb_cam/image_raw' />
+        <param name='tp_in_rgb_camerainfo' value='/rgb_cam/camera_info' />
+        <param name='tp_out_rgb' value='/sensors_calib/image_rect' />
+        <param name='tp_out_rgb_camerainfo' value='/sensors_calib/image_rect/camera_info' />
+        <param name='tp_out_intensity_rgb' value='/sensors_calib/intensity_rgb' />
+    </node>
+  </group>
+</launch>
+

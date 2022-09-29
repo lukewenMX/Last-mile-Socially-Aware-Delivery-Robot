@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <node name="republish" type="republish" pkg="image_transport" output="screen" args="compressed in:=/fl_cam/color raw out:=/fl_cam/color/image_raw" />
+  <include file="$(find mot_oc)/launch/mot_oc.launch" />
+  <include file="$(find prediction)/launch/prediction.launch" />
+  <include file="$(find dl_vis)/launch/dl_vis.launch" />
+  <!-- <include file="$(find mmseg)/launch/mmseg.launch" /> -->
+  <!-- <include file="$(find estimate_3dbbox)/launch/estimate_3dbbox.launch" /> -->
+  <node name="estimate_simple_node" pkg="estimate_simple" type="estimate_simple_node" output="screen"/>
+</launch>

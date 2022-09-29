@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+使用范例:
+ $roslaunch mot_oc mot_oc.launch
+-->
+<launch>
+  <!-- 节点名称 -->
+  <arg name="node_name" default="mot_oc" />
+  <!-- 调试等级 -->
+  <arg name="verbose" default="1" />
+  <!-- 指定GPU -->
+  <arg name="gpu_index" default="0" />
+  <!-- msg.header.frame_id -->
+  <arg name="frame_id" default="cam_frame" />
+  <!-- 置信度阈值 -->
+  <arg name="conf_thres" default="0.2" />
+  <!-- OCSORT IOU阈值 -->
+  <arg name="iou_thres" default="0.3" />
+  <!-- OCSORT track阈值 -->
+  <arg name="track_thres" default="0.6" />
+  <!-- 订阅主题: 图像数据 -->
+  <arg name="tp_in_image" default="/fl_cam/color/image_raw" />
+  <!-- 发布主题: 目标检测/跟踪结果 [mot/MOT] -->
+  <arg name='tp_out_mot' default="/objs_detect/mot" />
+  <!-- 发布主题: 可视化检测结果 [sensor_msgs/Image] -->
+  <arg name="tp_out_vis" default="/vis/obj_detect_rgb" />
+  <!-- <node name="republish" type="republish" pkg="image_transport" output="screen" args="compressed in:=/fl_cam/color raw out:=/fl_cam/color/image_raw" /> -->
+  <node pkg="mot_oc" type="mot_node.py" name="$(arg node_name)" output="screen">
+      <param name="yolox_model" value="$(find mot_oc)/bin/yoloxs_trt"/>
+      <param name="frame_id" value="$(arg frame_id)" />
+      <param name="verbose" type="int" value="$(arg verbose)" />
+      <param name="gpu_index" type="int" value="$(arg gpu_index)" />
+      <param name="conf_thres" type="double" value="$(arg conf_thres)" />
+      <param name="iou_thres" type="double" value="$(arg iou_thres)" />
+      <param name='tp_in_image' value="$(arg tp_in_image)" />
+      <param name='tp_out_mot' value="$(arg tp_out_mot)" />
+      <param name="tp_out_vis" value="$(arg tp_out_vis)" />
+  </node>
+</launch>
+

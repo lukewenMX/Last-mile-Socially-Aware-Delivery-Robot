@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load configuration parameters -->
+  <rosparam command="load" file="$(find prediction)/config/prediction.yaml" />
+
+  <!-- Start the node -->
+  <node name="prediction" pkg="prediction"
+        type="prediction_node.py" output="screen" />
+</launch>

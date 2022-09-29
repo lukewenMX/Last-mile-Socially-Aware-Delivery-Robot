@@ -1,0 +1,129 @@
+{
+    "pipeline": {
+        "input": [
+            "img"
+        ],
+        "output": [
+            "post_output"
+        ],
+        "tasks": [
+            {
+                "type": "Task",
+                "module": "Transform",
+                "name": "Preprocess",
+                "input": [
+                    "img"
+                ],
+                "output": [
+                    "prep_output"
+                ],
+                "transforms": [
+                    {
+                        "type": "LoadImageFromFile"
+                    },
+                    {
+                        "type": "Resize",
+                        "keep_ratio": false,
+                        "size": [
+                            512,
+                            1024
+                        ]
+                    },
+                    {
+                        "type": "Normalize",
+                        "mean": [
+                            123.675,
+                            116.28,
+                            103.53
+                        ],
+                        "std": [
+                            58.395,
+                            57.12,
+                            57.375
+                        ],
+                        "to_rgb": true
+                    },
+                    {
+                        "type": "ImageToTensor",
+                        "keys": [
+                            "img"
+                        ]
+                    },
+                    {
+                        "type": "Collect",
+                        "keys": [
+                            "img"
+                        ],
+                        "meta_keys": [
+                            "ori_shape",
+                            "flip",
+                            "pad_shape",
+                            "img_norm_cfg",
+                            "filename",
+                            "flip_direction",
+                            "valid_ratio",
+                            "scale_factor",
+                            "ori_filename",
+                            "img_shape"
+                        ]
+                    }
+                ],
+                "sha256": "c8adc48358b370664e7632c0b10f15c0bfc6b698a862184d4ea20dc80787da1d",
+                "fuse_transform": false
+            },
+            {
+                "name": "fcn",
+                "type": "Task",
+                "module": "Net",
+                "input": [
+                    "prep_output"
+                ],
+                "output": [
+                    "infer_output"
+                ],
+                "input_map": {
+                    "img": "input"
+                },
+                "output_map": {}
+            },
+            {
+                "type": "Task",
+                "module": "mmseg",
+                "name": "postprocess",
+                "component": "ResizeMask",
+                "params": {
+                    "type": "FCNHead",
+                    "in_channels": 256,
+                    "channels": 256,
+                    "num_convs": 1,
+                    "num_classes": 19,
+                    "in_index": 3,
+                    "concat_input": false,
+                    "dropout_ratio": 0.1,
+                    "norm_cfg": {
+                        "type": "BN",
+                        "requires_grad": true
+                    },
+                    "align_corners": true,
+                    "sampler": {
+                        "type": "OHEMPixelSampler",
+                        "thresh": 0.7,
+                        "min_kept": 10000
+                    },
+                    "loss_decode": {
+                        "type": "CrossEntropyLoss",
+                        "use_sigmoid": false,
+                        "loss_weight": 1.0
+                    }
+                },
+                "output": [
+                    "post_output"
+                ],
+                "input": [
+                    "prep_output",
+                    "infer_output"
+                ]
+            }
+        ]
+    }
+}

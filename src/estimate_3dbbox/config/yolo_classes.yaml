@@ -1,0 +1,761 @@
+---
+# YOLOV3 COCO 类别配置文件
+#   ID号和英文名遵守yolov3模型规则( keras-yolov3/model_data/classes.txt)
+# launch文件参数 srv_type==yolo 自动加载
+# 每个类别配置配置规范
+#   {class_id:{'id:0, 'en_name: 'persion', 'cn_name: '人', 'size: 0., 'conf_th: 0.3, 'iou_th: 0.5}, ...}
+#       class_id: 类别ID, 注{每个模型有自己ID规则}
+#       en_name:  类别英文名称
+#       cn_name:  类别中文名称
+#       size：    目标半径， 0.表示未知，由检测结果估算碰撞区域半径； 否则按给定值设置碰撞区域半径.
+#       conf_th:  置信度阈值， 0-1之间
+#       iou_th:   IoU阈值，0-1之间 ； 保留参数， 忽略
+#       icon: 雷达图显示图标文件，空默认实心小圆圈；起始字符 / 为绝对路径， <pack_name>表示包命令, e.g.: /path/car.png, <crash_warning>/resource/car.png
+#       warn_level: 预警等级，数字越大等级越高, 一般物体: 0, 人-1, 动物-2, 车-3，飞机-4
+#                   0-指固定无法移动的物体，如建筑物，树等.
+#                   1-指一般无生命不能自主运动但容易受外力作用运动的物体，如球、悬挂物
+#                   2-能自主运动并能灵活避障的生物或移动工具，如人，鸟，自行车
+#                   3-能自主运动但容易手惊吓的生物或移动工具，如宠物、家禽、畜牧
+#                   4-小型汽车
+#                   5-大型汽车/卡车
+#                   6-飞机
+# 
+# 检测目标过滤后留下的类别配置项, 空表示不过滤
+#   filter_class_ids: 
+#   例：过滤0,2,4
+#     filter_class_ids:
+#       - 0
+#       - 2
+#       - 4
+#
+# -------------------------------------------------------------------------------------------
+filter_class_ids: 
+  - 0  # person
+  - 1  # bicycle
+  - 2  # car
+  - 4  # aeroplane
+  - 5  # bus
+  - 7  # truck
+  - 56 # chair
+classes:
+  0:
+    id: 0
+    en_name: 'person'
+    cn_name: '人'
+    size: 0.2
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: <crash_warning>/resource/person.png
+    warn_level: 2
+  1:
+    id: 1
+    en_name: 'bicycle'
+    cn_name: '自行车'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 1
+  2:
+    id: 2
+    en_name: 'car'
+    cn_name: '汽车'
+    size: 1.0
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: <crash_warning>/resource/car.png
+    warn_level: 3
+  3:
+    id: 3
+    en_name: 'motorbike'
+    cn_name: '摩托车'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 3
+  4:
+    id: 4
+    en_name: 'aeroplane'
+    cn_name: '飞机'
+    size: 0.5
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 4
+  5:
+    id: 5
+    en_name: 'bus'
+    cn_name: '公共汽车'
+    size: 1.0
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: <crash_warning>/resource/car.png
+    warn_level: 3
+  6:
+    id: 6
+    en_name: 'train'
+    cn_name: '火车'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 4
+  7:
+    id: 7
+    en_name: 'truck'
+    cn_name: '卡车'
+    size: 1.0
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: <crash_warning>/resource/car.png
+    warn_level: 3
+  8:
+    id: 8
+    en_name: 'boat'
+    cn_name: '船'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  9:
+    id: 9
+    en_name: 'traffic light'
+    cn_name: '交通灯'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  10:
+    id: 10
+    en_name: 'fire hydrant'
+    cn_name: '消防栓'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  11:
+    id: 11
+    en_name: 'stop sign'
+    cn_name: '停车标志'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  12:
+    id: 12
+    en_name: 'parking meter'
+    cn_name: '停车计时器'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  13:
+    id: 13
+    en_name: 'bench'
+    cn_name: '长凳'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  14:
+    id: 14
+    en_name: 'bird'
+    cn_name: '鸟'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  15:
+    id: 15
+    en_name: 'cat'
+    cn_name: '猫'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  16:
+    id: 16
+    en_name: 'dog'
+    cn_name: '狗'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  17:
+    id: 17
+    en_name: 'horse'
+    cn_name: '马'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 2
+  18:
+    id: 18
+    en_name: 'sheep'
+    cn_name: '羊'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 2
+  19:
+    id: 19
+    en_name: 'cow'
+    cn_name: '奶牛'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 2
+  20:
+    id: 20
+    en_name: 'elephant'
+    cn_name: '大象'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 2
+  21:
+    id: 21
+    en_name: 'bear'
+    cn_name: '熊'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 2
+  22:
+    id: 22
+    en_name: 'zebra'
+    cn_name: '斑马'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 2
+  23:
+    id: 23
+    en_name: 'giraffe'
+    cn_name: '长颈鹿'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 2
+  24:
+    id: 24
+    en_name: 'backpack'
+    cn_name: '背包'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  25:
+    id: 25
+    en_name: 'umbrella'
+    cn_name: '雨伞'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  26:
+    id: 26
+    en_name: 'handbag'
+    cn_name: '手提包'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  27:
+    id: 27
+    en_name: 'tie'
+    cn_name: '领带'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  28:
+    id: 28
+    en_name: 'suitcase'
+    cn_name: '手提箱'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  29:
+    id: 29
+    en_name: 'frisbee'
+    cn_name: '飞盘'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  30:
+    id: 30
+    en_name: 'skis'
+    cn_name: '滑雪板'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  31:
+    id: 31
+    en_name: 'snowboard'
+    cn_name: '滑雪板'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  32:
+    id: 32
+    en_name: 'sports ball'
+    cn_name: '运动球'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  33:
+    id: 33
+    en_name: 'kite'
+    cn_name: '风筝'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  34:
+    id: 34
+    en_name: 'baseball bat'
+    cn_name: '棒球棒'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  35:
+    id: 35
+    en_name: 'baseball glove'
+    cn_name: '棒球手套'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  36:
+    id: 36
+    en_name: 'skateboard'
+    cn_name: '滑板'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  37:
+    id: 37
+    en_name: 'surfboard'
+    cn_name: '冲浪板'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  38:
+    id: 38
+    en_name: 'tennis racket'
+    cn_name: '网球拍'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  39:
+    id: 39
+    en_name: 'bottle'
+    cn_name: '瓶子'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  40:
+    id: 40
+    en_name: 'wine glass'
+    cn_name: '酒杯'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  41:
+    id: 41
+    en_name: 'cup'
+    cn_name: '杯子'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  42:
+    id: 42
+    en_name: 'fork'
+    cn_name: '叉'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  43:
+    id: 43
+    en_name: 'knife'
+    cn_name: '刀'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  44:
+    id: 44
+    en_name: 'spoon'
+    cn_name: '勺子'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  45:
+    id: 45
+    en_name: 'bowl'
+    cn_name: '碗'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  46:
+    id: 46
+    en_name: 'banana'
+    cn_name: '香蕉'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  47:
+    id: 47
+    en_name: 'apple'
+    cn_name: '苹果'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  48:
+    id: 48
+    en_name: 'sandwich'
+    cn_name: '三明治'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  49:
+    id: 49
+    en_name: 'orange'
+    cn_name: '橙子'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  50:
+    id: 50
+    en_name: 'broccoli'
+    cn_name: '西兰花'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  51:
+    id: 51
+    en_name: 'carrot'
+    cn_name: '胡萝卜'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  52:
+    id: 52
+    en_name: 'hot dog'
+    cn_name: '热狗'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  53:
+    id: 53
+    en_name: 'pizza'
+    cn_name: '披萨'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  54:
+    id: 54
+    en_name: 'donut'
+    cn_name: '甜甜圈'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  55:
+    id: 55
+    en_name: 'cake'
+    cn_name: '蛋糕'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  56:
+    id: 56
+    en_name: 'chair'
+    cn_name: '椅子'
+    size: 0.2
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  57:
+    id: 57
+    en_name: 'sofa'
+    cn_name: '沙发'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  58:
+    id: 58
+    en_name: 'pottedplant'
+    cn_name: '盆栽植物'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  59:
+    id: 59
+    en_name: 'bed'
+    cn_name: '床'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  60:
+    id: 60
+    en_name: 'diningtable'
+    cn_name: '餐台'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  61:
+    id: 61
+    en_name: 'toilet'
+    cn_name: '厕所'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  62:
+    id: 62
+    en_name: 'tvmonitor'
+    cn_name: '电视监视器'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  63:
+    id: 63
+    en_name: 'laptop'
+    cn_name: '笔记本电脑'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  64:
+    id: 64
+    en_name: 'mouse'
+    cn_name: '鼠标'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  65:
+    id: 65
+    en_name: 'remote'
+    cn_name: '遥远的?'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  66:
+    id: 66
+    en_name: 'keyboard'
+    cn_name: '键盘'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  67:
+    id: 67
+    en_name: 'cell phone'
+    cn_name: '手机'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  68:
+    id: 68
+    en_name: 'microwave'
+    cn_name: '微波炉'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  69:
+    id: 69
+    en_name: 'oven'
+    cn_name: '烤箱'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  70:
+    id: 70
+    en_name: 'toaster'
+    cn_name: '烤面包机'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  71:
+    id: 71
+    en_name: 'sink'
+    cn_name: '下沉'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  72:
+    id: 72
+    en_name: 'refrigerator'
+    cn_name: '冰箱'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  73:
+    id: 73
+    en_name: 'book'
+    cn_name: '书'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  74:
+    id: 74
+    en_name: 'clock'
+    cn_name: '时钟'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  75:
+    id: 75
+    en_name: 'vase'
+    cn_name: '花瓶'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  76:
+    id: 76
+    en_name: 'scissors'
+    cn_name: '剪刀'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  77:
+    id: 77
+    en_name: 'teddy bear'
+    cn_name: '泰迪熊'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  78:
+    id: 78
+    en_name: 'hair drier'
+    cn_name: '吹风机'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+  79:
+    id: 79
+    en_name: 'toothbrush'
+    cn_name: '牙刷'
+    size: 0.
+    conf_th: 0.3
+    iou_th: 0.5
+    icon: 
+    warn_level: 0
+

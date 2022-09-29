@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Load configuration parameters -->
+  <rosparam command="load" file="$(find pedestrian_yolo)/config/pedestrian_yolo.yaml" />
+
+  <!-- Start the node -->
+  <node name="pedestrian_yolo" pkg="pedestrian_yolo"
+        type="pedestrian_yolo_node" output="screen" />
+
+  <node name="republish" type="republish" pkg="image_transport" output="screen" args="compressed in:=/camera_out/front_left raw out:=/camera_out/front_left/image_raw" />
+</launch>
