@@ -1,10 +1,10 @@
-[toc]
+
 # Last-mile-Socially-Aware-Delivery-Robot
 <figure style="text-align:center;">
   <img src="imgs/ICRA24_MS3225_Accompany_video%2000_00_07-00_00_14.gif" alt="Image Description" width="800">
   <figcaption>Three main challenges in last-mile delivery robot navigation</figcaption>
 </figure>
-
+<!-- TOC -->
 ## 1. Introduction
 <figure style="text-align:center;">
   <img src="imgs/framework.png" alt="Image Description" width="800">
@@ -20,3 +20,4 @@
   <img src="imgs/dataset.png" alt="Image Description" width="800">
   <figcaption>Three main challenges in last-mile delivery robot navigation</figcaption>
 </figure>
+<!-- TOC -->
