@@ -5,6 +5,8 @@
   <figcaption>Three main challenges in last-mile delivery robot navigation</figcaption>
 </figure>
 
+This is the official implementation of the paper **"Towards Safe and Efficient Last-Mile Delivery: A Multi-Modal Socially Aware Navigation Framework for Autonomous Robots on Pedestrian-Crowded Sidewalk"**. The paper has been submitted to ICRA 2024 for review.
+
 ## 1. Introduction
 <figure style="text-align:center;">
   <img src="imgs/framework.png" alt="Image Description" width="800">
