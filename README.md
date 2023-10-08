@@ -21,7 +21,7 @@ This is the official implementation of the paper **"Towards Safe and Efficient L
 ### 1.1 Nanyang Sidewalk dataset
 #### **Download Nanyang Sidewalk Dataset** [here](https://entuedu-my.sharepoint.com/:f:/g/personal/yichen_zhou_staff_main_ntu_edu_sg/EiWSMUAhh6dIukF7rnQqdygBmHAQB__wPmX1BCeHz69IAA?e=60Lchq)
 <figure style="text-align:center;">
-  <img src="imgs/ICRA24_MS3225_Accompany_video%2000_00_25-00_00_30.gif" alt="Image Description" width="500">
+  <img src="imgs/ICRA24_MS3225_Accompany_video%2000_00_25-00_00_30.gif" alt="Image Description" width="800">
 </figure>
 
 The dataset comes from a 1,150-second video recorded by a husky robot with a realsense RGB-D camera. The robot traveled about 1 km along the Nanyang Link sidewalk. We took one image every 11 frames, resulting in an initial collection of 3,000 images. We then removed similar images to increase diversity, resulting in a final dataset of **1,096** images, each with a resolution of 480x848 pixels. The dataset in **Pascal VOC 2012** format can be downloaded [here](https://entuedu-my.sharepoint.com/:f:/g/personal/yichen_zhou_staff_main_ntu_edu_sg/EiWSMUAhh6dIukF7rnQqdygBmHAQB__wPmX1BCeHz69IAA?e=60Lchq).
