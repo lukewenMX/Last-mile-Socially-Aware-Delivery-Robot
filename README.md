@@ -4,7 +4,6 @@
   <img src="imgs/ICRA24_MS3225_Accompany_video%2000_00_07-00_00_14.gif" alt="Image Description" width="800">
   <figcaption>Three main challenges in last-mile delivery robot navigation</figcaption>
 </figure>
-<!-- TOC -->
 
 ## 1. Introduction
 <figure style="text-align:center;">
@@ -17,9 +16,44 @@
 2) A multi-modal 3D detection and motion prediction integrated with the **social force model** has been introduced to perceive the intention of pedestrians. 
 3) A socially aware motion planner for the delivery robot is demonstrated by following pedestrian etiquette. Extensive experiments have been conducted to verify and evaluate the performance of the proposed algorithm.
 
-## 2. Nanyang Sidewalk dataset
+### 1.1 Nanyang Sidewalk dataset
+#### **Download Nanyang Sidewalk Dataset** [here](https://entuedu-my.sharepoint.com/:f:/g/personal/yichen_zhou_staff_main_ntu_edu_sg/EiWSMUAhh6dIukF7rnQqdygBmHAQB__wPmX1BCeHz69IAA?e=60Lchq)
+<figure style="text-align:center;">
+  <img src="imgs/ICRA24_MS3225_Accompany_video%2000_00_25-00_00_30.gif" alt="Image Description" width="500">
+</figure>
+
+The dataset comes from a 1,150-second video recorded by a husky robot with a realsense RGB-D camera. The robot traveled about 1 km along the Nanyang Link sidewalk. We took one image every 11 frames, resulting in an initial collection of 3,000 images. We then removed similar images to increase diversity, resulting in a final dataset of **1,096** images, each with a resolution of 480x848 pixels.
+
 <figure style="text-align:center;">
   <img src="imgs/dataset.png" alt="Image Description" width="800">
-  <figcaption>Three main challenges in last-mile delivery robot navigation</figcaption>
+  <figcaption>Visualization of segmentation results (Mask2Former)</figcaption>
 </figure>
-<!-- TOC -->
+
+<figure style="text-align:center;">
+  <img src="imgs/Weixin%20Screenshot_20231008205332.png" alt="Image Description" width="800">
+  <figcaption>Performance Comparsion</figcaption>
+</figure>
+
+### 1.2. Pedestrian Intention Prediction
+
+#### a. Pedsim Scenarios
+<figure style="text-align:center;">
+  <img src="imgs/ICRA24_MS3225_Accompany_video%2000_01_44-00_01_50.gif" alt="Image Description" width="800">
+</figure>
+
+#### b. Repulsive-Boundary-based Trajectory prediction
+
+<figure style="text-align:center;">
+  <img src="imgs/ICRA24_MS3225_Accompany_video%2000_01_44-00_01_50~1.gif" alt="Image Description" width="800">
+</figure>
+
+### 1.3. Socially Aware Motion Planner
+#### a. Overtaking from the right side
+<figure style="text-align:center;">
+  <img src="imgs/ICRA24_MS3225_Accompany_video%2000_01_44-00_01_50~2.gif" alt="Image Description" width="800">
+</figure>
+
+#### b. Running along from the left side
+<figure style="text-align:center;">
+  <img src="imgs/ICRA24_MS3225_Accompany_video%2000_01_44-00_01_50~4.gif" alt="Image Description" width="800">
+</figure>
