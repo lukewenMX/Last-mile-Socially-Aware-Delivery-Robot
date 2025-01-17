@@ -19,12 +19,12 @@ This is the official implementation of the paper **"Towards Safe and Efficient L
 3) A socially aware motion planner for the delivery robot is demonstrated by following pedestrian etiquette. Extensive experiments have been conducted to verify and evaluate the performance of the proposed algorithm. pedestrians' positions and predicted trajectories will be further fused with a static traversability map. Based on the final occupancy grid map, socially aware planning is developed to follow pedestrian etiquette in Singapore and navigate delivery robots along the narrow sidewalk.
 
 ### 1.1 Nanyang Sidewalk dataset
-#### **Download Nanyang Sidewalk Dataset** [here](https://entuedu-my.sharepoint.com/:f:/g/personal/yichen_zhou_staff_main_ntu_edu_sg/EiWSMUAhh6dIukF7rnQqdygBmHAQB__wPmX1BCeHz69IAA?e=60Lchq)
+#### **Download Nanyang Sidewalk Dataset** [here](https://drive.google.com/file/d/1Hgyy8d2Ny86SW00C9I1natI11ghpTu-X/view?usp=sharing)
 <figure style="text-align:center;">
   <img src="imgs/ICRA24_MS3225_Accompany_video%2000_00_25-00_00_30.gif" alt="Image Description" width="800">
 </figure>
 
-The dataset comes from a 1,150-second video recorded by a husky robot with a realsense RGB-D camera. The robot traveled about 1 km along the Nanyang Link sidewalk. We took one image every 11 frames, resulting in an initial collection of 3,000 images. We then removed similar images to increase diversity, resulting in a final dataset of **1,096** images, each with a resolution of 480x848 pixels. The dataset in **Pascal VOC 2012** format can be downloaded [here](https://entuedu-my.sharepoint.com/:f:/g/personal/yichen_zhou_staff_main_ntu_edu_sg/EiWSMUAhh6dIukF7rnQqdygBmHAQB__wPmX1BCeHz69IAA?e=60Lchq).
+The dataset comes from a 1,150-second video recorded by a husky robot with a realsense RGB-D camera. The robot traveled about 1 km along the Nanyang Link sidewalk. We took one image every 11 frames, resulting in an initial collection of 3,000 images. We then removed similar images to increase diversity, resulting in a final dataset of **1,096** images, each with a resolution of 480x848 pixels. The dataset in **Pascal VOC 2012** format can be downloaded [here](https://drive.google.com/file/d/1Hgyy8d2Ny86SW00C9I1natI11ghpTu-X/view?usp=sharing).
 
 <figure style="text-align:center;">
   <img src="imgs/dataset.png" alt="Image Description" width="800">
